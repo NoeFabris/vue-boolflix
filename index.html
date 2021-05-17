@@ -21,10 +21,16 @@
             <div class="container-fluid">
 
                 <h1 class="text-red">BoolFlix</h1>
+                <!-- <div class="d-flex justify-content-start text-white">
+
+                    <span>Movies</span>
+                    <span>Series</span>
+
+                </div> -->
                 
-                <div>
-                    <input class="mx-2" type="text" v-model='search' @keyup.enter='searchElements'>
-                    <button @click='searchElements'>Search</button>
+                <div class="d-flex align-items-center">
+                    <input class="mx-2 rounded" type="text" v-model='search' @keyup.enter='searchElements' placeholder="Cerca un Film o una serie Tv">
+                    <button class="btn btn-secondary" @click='searchElements'>Search</button>
                 </div>
 
             </div>
@@ -38,11 +44,11 @@
 
                 <ul class="col d-flex justify-content-center" v-for='(search, index) in movieResults' :key='index'>
 
-                    <li class="poster-box center-block">
+                    <li class="poster-box center-block my-2">
 
-                        <img :src="getPosterImg(search.poster_path)" alt="">
+                        <img class="rounded" :src="getPosterImg(search.poster_path)" alt="">
 
-                        <div class="details px-3 py-5">
+                        <div class="details px-3 py-5 rounded">
 
                             <p>Titolo = {{search.title}}</p>
                             <p>Titolo Originale = {{search.original_title}}</p>
@@ -63,22 +69,49 @@
             <h3 class='text-center py-3' v-if='seriesResults.length > 0'>Series:</h3>
             <div class="row row-cols-auto justify-content-around">
 
+                <ul class="col d-flex justify-content-center" v-for='(search, index) in seriesResults' :key='index'>
+
+                    <li class="poster-box center-block">
+
+                        <img :src="getPosterImg(search.poster_path)" alt="">
+
+                        <div class="details px-3 py-5">
+
+                            <p>Titolo = {{search.name}}</p>
+                            <p>Titolo Originale = {{search.original_name}}</p>
+                            <p>Lingua = 
+                                <span class="flag-icon" :class='langFlag(search.original_language)'></span>
+                            </p>
+                            <p>Voto = 
+                                <i class="far fa-star" :class="{'fas' : star, 'far' : !star}" v-for="star in ratingStars(search.vote_average)"></i>
+                            </p>
+                            <p>Overview = {{search.overview}}</p>
+
+                        </div>
+                    </li>
+                </ul>
+
+            </div>
+
+
+            <!-- <div class="row row-cols-auto justify-content-around">
+
                 <ul v-for='(search, index) in seriesResults' :key='index'>
                     <li class="col-md-3 poster-box">
                         <img :src="getPosterImg(search.poster_path)" alt="">
-                        <!-- <p>Titolo = {{search.name}}</p>
+                        <p>Titolo = {{search.name}}</p>
                         <p>Titolo Originale = {{search.original_name}}</p>
                         <p>Lingua = {{search.original_language}}
                             <span class="flag-icon" :class='langFlag(search.original_language)'></span>
                         </p>
                         <p>Voto = 
                             <i class="far fa-star" :class="{'fas' : star, 'far' : !star}" v-for="star in ratingStars(search.vote_average)"></i>
-                        </p> -->
+                        </p>
     
                     </li>
                 </ul>
 
-            </div>
+            </div> -->
 
         </main>
     </section>

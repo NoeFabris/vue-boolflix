@@ -1,11 +1,15 @@
 body {
     background-color: #141414;
 }
+input{
+    width: 300px;
+}
 .poster-box{
     list-style: none;
     position: relative;
     width: 342px;
     height: 513px;
+    box-shadow: 3px 3px 5px 6px rgba(0, 0, 0, 0.4);
 }
 .poster-box img{
     width: 342px;
@@ -19,9 +23,15 @@ body {
     background-color: black;
     opacity: 0.9;
     visibility: hidden;
+    overflow: auto; 
+    /* text-overflow: ellipsis; */
 }
-.details:hover {
+.poster-box:hover .details{
     visibility: visible;
+    border: 1px lightgray;
+}
+.overview{
+    overflow: hidden;
 }
 
 /* utility clases */
