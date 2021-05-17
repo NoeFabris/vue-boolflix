@@ -2,8 +2,8 @@ new Vue ({
     el: '#root',
     data: {
         search: null,
-        movieResults: [],
-        seriesResults: [],
+        movieResults: null,
+        seriesResults: null,
         apiKey: '3daf6c4288b91bf41cfa792106caf635',
 
 
@@ -50,6 +50,7 @@ new Vue ({
         },
 
         seriesSearch() {
+
             this.seriesResults = []
                 axios.get('https://api.themoviedb.org/3/search/tv', {
                     params: {
@@ -71,7 +72,6 @@ new Vue ({
         },
 
         langFlag(lang) {
-            console.log(lang)
             const langToFlag = {
                 'en': ['gb'],
                 'ja': ['jp']
@@ -81,11 +81,26 @@ new Vue ({
             
             // aggiungere check dei nomi delle bandiere in .svg
             if (Object.keys(langToFlag).includes(lang)) {
-                console.log(langToFlag[lang])
                 return `flag-icon-${langToFlag[lang]}`
             } else {
                 return `flag-icon-${lang}`
             }
+        },
+
+        getPosterImg(posterUrl) {
+            const tmdbUrl = 'https://image.tmdb.org/t/p/'
+            const posterDimensions = 'w185'
+
+            return `${tmdbUrl}${posterDimensions}${posterUrl}`
+        },
+
+        ratingStars(voteAvg) {
+            const vote = Math.round(voteAvg / 2)
+            const returnStars = []
+            for (let i = 1; i < 6; i++) {
+                returnStars.push(i <= vote)
+            }
+            return returnStars
         }
     
     },
