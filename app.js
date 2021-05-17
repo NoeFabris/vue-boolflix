@@ -2,8 +2,8 @@ new Vue ({
     el: '#root',
     data: {
         search: null,
-        movieResults: null,
-        seriesResults: null,
+        movieResults: [],
+        seriesResults: [],
         apiKey: '3daf6c4288b91bf41cfa792106caf635',
 
 
@@ -89,9 +89,12 @@ new Vue ({
 
         getPosterImg(posterUrl) {
             const tmdbUrl = 'https://image.tmdb.org/t/p/'
-            const posterDimensions = 'w185'
-
-            return `${tmdbUrl}${posterDimensions}${posterUrl}`
+            const posterDimensions = 'w342'
+            if (posterUrl) {
+                return `${tmdbUrl}${posterDimensions}${posterUrl}`
+            } else {
+                return `assets/w342.jpg`
+            }
         },
 
         ratingStars(voteAvg) {

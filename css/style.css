@@ -1,0 +1,16 @@
+body {
+    background-color: #141414;
+}
+
+
+
+/* utility clases */
+.text-red{
+    color: rgb(173, 1, 1);
+}
+.bg-black{
+    background-color: black;
+}
+.text-white{
+   color: #FFFFFF; 
+}
