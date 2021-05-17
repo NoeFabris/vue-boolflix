@@ -15,6 +15,7 @@
 </head>
 <body>
     <section id="root">
+
         <nav class="navbar bg-black">
 
             <div class="container-fluid">
@@ -23,7 +24,7 @@
                 
                 <div>
                     <input class="mx-2" type="text" v-model='search' @keyup.enter='searchElements'>
-                    <button @click='searchElements'>Cerca</button>
+                    <button @click='searchElements'>Search</button>
                 </div>
 
             </div>
@@ -31,30 +32,39 @@
         </nav>
     
         <main class="container-fluid bg-lightgrey text-white pt-2">
-            <h3 class="text-center" v-if='movieResults.length > 0'>Movies:</h3>
+
+            <h3 class="text-center py-3" v-if='movieResults.length > 0'>Movies:</h3>
             <div class="row row-cols-auto justify-content-around">
 
-                <ul class="" v-for='(search, index) in movieResults' :key='index'>
-                    <li class="col">
+                <ul class="col d-flex justify-content-center" v-for='(search, index) in movieResults' :key='index'>
+
+                    <li class="poster-box center-block">
+
                         <img :src="getPosterImg(search.poster_path)" alt="">
-                        <!-- <p>Titolo = {{search.title}}</p>
-                        <p>Titolo Originale = {{search.original_title}}</p>
-                        <p>Lingua = 
-                            <span class="flag-icon" :class='langFlag(search.original_language)'></span>
-                        </p>
-                        <p>Voto = 
-                            <i class="far fa-star" :class="{'fas' : star, 'far' : !star}" v-for="star in ratingStars(search.vote_average)"></i>
-                        </p> -->
+
+                        <div class="details px-3 py-5">
+
+                            <p>Titolo = {{search.title}}</p>
+                            <p>Titolo Originale = {{search.original_title}}</p>
+                            <p>Lingua = 
+                                <span class="flag-icon" :class='langFlag(search.original_language)'></span>
+                            </p>
+                            <p>Voto = 
+                                <i class="far fa-star" :class="{'fas' : star, 'far' : !star}" v-for="star in ratingStars(search.vote_average)"></i>
+                            </p>
+                            <p>Overview = {{search.overview}}</p>
+
+                        </div>
                     </li>
                 </ul>
 
             </div>
             
-            <h3 class='text-center' v-if='seriesResults.length > 0'>Series:</h3>
+            <h3 class='text-center py-3' v-if='seriesResults.length > 0'>Series:</h3>
             <div class="row row-cols-auto justify-content-around">
 
                 <ul v-for='(search, index) in seriesResults' :key='index'>
-                    <li>
+                    <li class="col-md-3 poster-box">
                         <img :src="getPosterImg(search.poster_path)" alt="">
                         <!-- <p>Titolo = {{search.name}}</p>
                         <p>Titolo Originale = {{search.original_name}}</p>

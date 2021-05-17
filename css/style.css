@@ -1,8 +1,28 @@
 body {
     background-color: #141414;
 }
-
-
+.poster-box{
+    list-style: none;
+    position: relative;
+    width: 342px;
+    height: 513px;
+}
+.poster-box img{
+    width: 342px;
+    height: 513px;
+}
+.details {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.9;
+    visibility: hidden;
+}
+.details:hover {
+    visibility: visible;
+}
 
 /* utility clases */
 .text-red{
