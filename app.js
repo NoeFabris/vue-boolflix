@@ -104,12 +104,6 @@ new Vue ({
                 returnStars.push(i <= vote)
             }
             return returnStars
-        },
-
-        overviewTextLimit(overview) {
-            if (overview.char) {
-                
-            }
         }
     
     },
